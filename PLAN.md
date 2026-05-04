@@ -9,7 +9,7 @@ A C# .NET 8 console application that bridges Nostr NIP-17 (Gift Wrap) private DM
 ```
 ┌─────────────────────┐
 │  Your Phone          │
-│  (Amethyst/etc)      │
+│  (Scramble/etc)      │
 │  npub: authorized    │
 └─────────┬───────────┘
           │ NIP-17 Gift Wrap DM
@@ -95,7 +95,7 @@ Response: `{ info: Message, parts: Part[] }`
 ### Server Startup
 
 ```bash
-opencode serve --port 4096 --dangerously-skip-permissions
+opencode serve --port 4096
 ```
 
 The `--dangerously-skip-permissions` flag is safe here because the only user is the pre-authorized npub.

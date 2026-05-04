@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  opencode:
+    image: ghcr.io/anomalyco/opencode:latest
+    command: ["serve", "--port", "4096", "--hostname", "0.0.0.0"]
+    ports:
+      - "4096:4096"
+    volumes:
+      - ./workspace:/workspace
+    working_dir: /workspace
+
+  agent:
+    build: .
+    depends_on:
+      - opencode
+    environment:
+      - Nostr__AgentPrivateKey=${NOSTR_AGENT_PRIVATE_KEY}
+      - Nostr__AuthorizedNpub=${NOSTR_AUTHORIZED_NPUB}
+      - OpenCode__BaseUrl=http://host.docker.internal:4096
+    restart: unless-stopped
